@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Tic-tac-toe">
+	<meta name="author" content="Aleksandr Liskov">
+	<title>Tic-tac-toe</title>
+	<link rel="stylesheet" href="all_style/style.css">
+	<link rel="stylesheet" href="all_style/normolize.css">
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+	<section class="piskvorky">
+		<div class="overlay"></div>
+		<div class="wrapper">
+			<h1 class="title"><a class="title-ref" href="index.html">Piškvorky</a></h1>
+			<div class="name">
+				<div class="name-player name-first">
+					<label class="name-player-label" id="player_1">Hráč 1: </label>
+					<div class="name-first-insert name-insert">
+					</div>
+					<div class="name-player-symbol" id="symbol_1">
+					</div>
+					<div class="name-player-score name-player-score-first">
+					</div>
+				</div>
+				<div class="name-player name-second">
+					<label class="name-player-label" id="player_2">Hráč 2: </label>
+					<div class="name-second-insert name-insert">
+					</div>
+					<div class="name-player-symbol" id="symbol_2">
+					</div>
+					<div class="name-player-score name-player-score-second">
+					</div>
+				</div>
+			</div>
+			<div class="hra">
+				<div class="hra-wrapper"></div>
+				<input type="button" class="btn" value="Start" onclick="Start()">
+			</div>
+			<div class="comment">
+				<div class="comment-text"></div>
+			</div>
+		</div>
+		<ul class="start-block">
+			<li class="start-block-item">
+				<input type="text" class="start-block-text start-block-name-1" placeholder="Jméno 1.hráče">
+			</li>
+			<li class="start-block-item">
+				<input type="text" class="start-block-text start-block-name-2" placeholder="Jméno 2.hráče">
+			</li>
+			<li class="start-block-item">
+				<input type="text" class="start-block-text start-text-1" placeholder="Počet řádků">
+			</li>
+			<li class="start-block-item">
+				<input type="text" class="start-block-text start-text-2" placeholder="Počet sloupců">
+			</li>
+			<li class="start-block-item">
+				<div class="start-block-text start-block-poznamka">Napište spravne všechna data</div>
+			</li>
+		</ul>
+		<input type="button" class="btn btn-2" value="Hrát znovu" onclick="Restart()">
+	</section>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src='js/1.js'></script>
+</body>
+</html>
