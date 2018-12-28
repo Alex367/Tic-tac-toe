@@ -335,6 +335,8 @@ function chech_diag_first (choice) { //all ↗
 
     for(let i = 0; i < row-w; i++)
     {
+    	sum = 0;
+
         let j = 0;
         let t = i;
         if(column < row)
@@ -375,6 +377,7 @@ function chech_diag_first (choice) { //all ↗
     }
     for(let j= 1-w; j<column; j++) //когда упираемся в последнюю точку 7.0
     {
+    	sum = 0;
         let i = row-1;
         let t = j;
         if(column > row)
