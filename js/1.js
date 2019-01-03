@@ -1,5 +1,5 @@
 var arr = [],
-	cnt_of_win, //сколько нужно для победы
+	cnt_of_win,
 	cnt_score = 0,
 	score_first = 0,
 	score_second = 0,
@@ -9,7 +9,6 @@ var arr = [],
 	tmp_move = false,
 	no_repeat = false,
 	biggest_row_column = false, //row > column
-	longest,
 	row,
 	column,
 	w;
@@ -43,14 +42,12 @@ function Start(tmp_restart) {
 		return alert('Rozsah hry musí být napsán jedním číslo');
 	}
 
-	if(row < 3 || column < 3){
-		return alert(' Minimální číslo je 3 ');
-	}
+	if(row < 3 || column < 3){return alert(' Minimální číslo je 3 ');}
 
 	$('.start-block').css('display','none');
 
 
-	if(tmp_restart){//if we restarted
+	if(tmp_restart){//restart
 		$(".hra-span").remove();
 		$(".hra-wrapper-block").remove();
 		score_first = 0;
@@ -62,13 +59,12 @@ function Start(tmp_restart) {
 	}
 
 	$('.btn').css('display','none');
-
 	$('.name').css('visibility','visible');
 	$('.name').css('opacity','1');
 
 	var random_hrac = getRandomInt(2);
 
-	if(random_hrac == 1){ //выбор кто чем ходит
+	if(random_hrac == 1){
 		$("#symbol_1").html('Symbol: '+'X');
 		arr_name_1.push('X');
 		arr_name_1.push(name_1);
@@ -88,16 +84,13 @@ function Start(tmp_restart) {
 	$( ".name-second-insert" ).html('Jméno: '+ name_2);
 	$( ".name-player-score" ).html('Tah: '+ cnt_score);
 
-	if(row >= 16){
-		$('.hra-wrapper').css('justifyContent','unset');
-	}
+	if(row >= 17){$('.hra-wrapper').css('justifyContent','unset');}
 
 	if(row <= column){
 
 		biggest_row_column = true; //column > row
 
-		if(row == 3 || row == 4) //кол-во собранных знаков
-		{
+		if(row == 3 || row == 4){ //кол-во собранных знаков
 			cnt_of_win = 3;
 			$(".comment-text").html('Vyhrává hráč, který jako první vytvoří nepřerušenou řadu ' + cnt_of_win + '. svých značek');
 		}
@@ -112,8 +105,7 @@ function Start(tmp_restart) {
 	}
 	else if(row > column){
 
-		if(column == 3 || column == 4) //кол-во собранных знаков
-		{
+		if(column == 3 || column == 4){ //кол-во собранных знаков
 			cnt_of_win = 3;
 			$(".comment-text").html('Vyhrává hráč, který jako první vytvoří nepřerušenou řadu ' + cnt_of_win + '. svých značek');
 		}
@@ -178,13 +170,12 @@ $("body").on( "click", '.hra-span', function() { // add symbol
 				$( ".name-player-score-second" ).html('Tah: '+ score_second);
 			}
 
-			//проверка на результат
+			//check results
 			var parent_position = $(this).parent().index();
 			var symbol_position = $(this).index();
 			let choice = 'X';
 
 			arr[parent_position][symbol_position] = choice; //add symbol if we clicked on label like X
-			// console.log(arr);
 
 			check_win_string(choice);
 			check_win_column(choice);
@@ -194,7 +185,6 @@ $("body").on( "click", '.hra-span', function() { // add symbol
 				check_diagonal_plus_down(choice);
 			}
 			else{
-
 				if(biggest_row_column){ // c>r
 					w=0;
 					chech_diag_first(choice);
@@ -206,7 +196,6 @@ $("body").on( "click", '.hra-span', function() { // add symbol
 					check_diag_second(choice);
 				}
 			}
-
 			check_draw(choice);
 		}
 		else{
@@ -227,7 +216,6 @@ $("body").on( "click", '.hra-span', function() { // add symbol
 			let choice = 'O';
 
 			arr[parent_position_nula][symbol_position_nula] = choice; //add symbol if we clicked on the label like O
-			// console.log(arr);
 
 			check_win_string(choice);
 			check_win_column(choice);
@@ -237,7 +225,6 @@ $("body").on( "click", '.hra-span', function() { // add symbol
 				check_diagonal_plus_down(choice);
 			}
 			else{
-
 				if(biggest_row_column){ // c>r
 					w=0;
 					chech_diag_first(choice);
@@ -249,7 +236,6 @@ $("body").on( "click", '.hra-span', function() { // add symbol
 					check_diag_second(choice);
 				}
 			}
-
 			check_draw(choice);
 		}
 
@@ -259,6 +245,7 @@ $("body").on( "click", '.hra-span', function() { // add symbol
 
 function check_win_string (choice) {
 	let cnt = 0;
+
 	for(let z = 0; z < row; z++){
 
 		for(let j = 0; j < column; j++){
@@ -339,6 +326,7 @@ function chech_diag_first (choice) { //all ↗
 
         let j = 0;
         let t = i;
+
         if(column < row)
         {
             while(t >= 0 && j < column)
@@ -352,7 +340,6 @@ function chech_diag_first (choice) { //all ↗
 	        	if(sum == cnt_of_win){
 					return check_winner(choice);
 				}
-
                 t--;
                 j++;
             }
@@ -375,11 +362,14 @@ function chech_diag_first (choice) { //all ↗
             }
         }
     }
+
     for(let j= 1-w; j<column; j++) //когда упираемся в последнюю точку 7.0
     {
     	sum = 0;
+
         let i = row-1;
         let t = j;
+
         if(column > row)
         {
             while(t < column && i>=0)
@@ -461,6 +451,7 @@ function check_diag_second (choice) { //all ↘ 5x5
 	let z = 0;
 
 	for(let cnt = 0; cnt < column-w; cnt++){
+
 		sum = 0;
 
 		if(row < column){
@@ -478,7 +469,6 @@ function check_diag_second (choice) { //all ↘ 5x5
 	        	if(sum == cnt_of_win){
 					return check_winner(choice);
 				}
-
 				j--;
 				i--;
 			}
@@ -498,16 +488,17 @@ function check_diag_second (choice) { //all ↘ 5x5
 	        	if(sum == cnt_of_win){
 					return check_winner(choice);
 				}
-
 				j--;
 				i--;
 			}
 		}
 	}
 	for(let cnt = 0; cnt < row; cnt++){
+
 		sum = 0;
 
 		if(row < column){
+
 			p = cnt; // 0
 			z = column-1; // 7
 
@@ -522,12 +513,12 @@ function check_diag_second (choice) { //all ↘ 5x5
 	        	if(sum == cnt_of_win){
 					return check_winner(choice);
 				}
-
 				z--;
 				p--;
 			}
 		}
 		else{
+
 			z = column-1;
 			p = cnt;
 
@@ -541,7 +532,6 @@ function check_diag_second (choice) { //all ↘ 5x5
 	        	if(sum == cnt_of_win){
 					return check_winner(choice);
 				}
-
 				p--;
 				z--;
 			}

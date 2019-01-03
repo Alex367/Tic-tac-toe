@@ -91,11 +91,11 @@ section {
   position: relative; }
 
 .hra-wrapper {
-  width: 70%;
-  height: 75%;
+  width: 73%;
+  height: 83%;
   border: 1px solid black;
   position: absolute;
-  top: 20%;
+  top: 13%;
   justify-content: center;
   overflow: scroll;
   white-space: nowrap;
@@ -216,8 +216,7 @@ section {
   top: 45%;
   margin: 0;
   padding: 0;
-  list-style-type: none;
-  text-align: center; }
+  list-style-type: none; }
 
 .start-block-item {
   height: 50px;
@@ -227,7 +226,8 @@ section {
   border-radius: 5px;
   border: 1px solid black;
   text-align: center;
-  font-size: 15px; }
+  font-size: 15px;
+  width: 80%; }
 
 .start-block-poznamka {
   color: red;
